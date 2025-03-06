@@ -1,3 +1,6 @@
+# Abstract
+This code repository is related to threat detection and is used to enhance features in the original UNSW-NB15 threat detection dataset. The newly added features (referred to as Type II features) can further improve the expressive capability of traffic data, and significant performance improvements have been validated across multiple models. The enhanced training and validation data can be used to train and validate new algorithms. Here, we share our processed and enhanced UNSW-NB15 dataset, as well as the relevant feature processing and model training code. If you have any questions, please feel free to contact us.
+
 # Dataset
 ## UNSW-NB15 Dataset
 UNSW-NB15 public dataset.
@@ -9,11 +12,12 @@ part of important dataset is available here :
 the complete data is available here:[The UNSW-NB15 Dataset](https://research.unsw.edu.au/projects/unsw-nb15-dataset)
 ## Deep Feature
 The deep feature we extract by using proposed deep feature extraction method.
+- feature_7.*.rar
 
 `Feature Description.xlsx`: Detailed feature description document.
 
-# Feature Extraction and Validation Framework
-![extraction and validation framework.png](extraction and validation framework.png)
+# Code
+![Feature Extraction and Validation Framework](extraction and validation framework.png)
 
 ## feature_extract
 Data Alignment and Feature Extraction based on the original UNSW-NB15 dataset
@@ -115,6 +119,7 @@ Combine Type I and Type II Features.
 ### Feature Files
 - Feature Version 7: `input/us_features/feature_7.csv`
   - Description: Type-I and Type-II Feature (i.e., using deep feature extraction method)
+  - You need to extract `data/feature_7.*.rar` to `input/us_features/`
 ### Code:
 - `algorithm/`
   - `model.py`: Entry point for code

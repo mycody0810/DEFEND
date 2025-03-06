@@ -1,13 +1,16 @@
 cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
 authors:
-  - family-names: Zhao
-    given-names: Runze
-#     orcid: https://orcid.org/1234-5678-9101-1121
-title: "DEFEND"
+- family-names: "Han"
+  given-names: "Ying"
+- family-names: "Zhao"
+  given-names: "Runze"
+- family-names: "Jia"
+  given-names: "Jinkang"
+- family-names: "Kang"
+  given-names: "Lehan"
+
+title: "DEFEND: Deep Enhanced Feature Extraction for Network Defense"
 version: 1.0.0
-# identifiers:
-#   - type: doi
-#     value: 10.5281/zenodo.1234
-repository-code: "https://github.com/mycody0810/DEFEND"
 date-released: 2025-03-06
+url: "https://github.com/mycody0810/DEFEND"

@@ -9,4 +9,5 @@ version: 1.0.0
 # identifiers:
 #   - type: doi
 #     value: 10.5281/zenodo.1234
+repository-code: "https://github.com/mycody0810/DEFEND"
 date-released: 2025-03-06

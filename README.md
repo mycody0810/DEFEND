@@ -13,7 +13,7 @@ The deep feature we extract by using proposed deep feature extraction method.
 `Feature Description.xlsx`: Detailed feature description document.
 
 # Feature Extraction and Validation Framework
-![img_1.png](extraction and validation framework.png)
+![extraction and validation framework.png](extraction and validation framework.png)
 
 ## feature_extract
 Data Alignment and Feature Extraction based on the original UNSW-NB15 dataset

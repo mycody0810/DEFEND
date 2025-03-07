@@ -17,103 +17,38 @@ The deep feature we extract by using proposed deep feature extraction method.
 `Feature Description.xlsx`: Detailed feature description document.
 
 # Code
-![Feature Extraction and Validation Framework](extraction and validation framework.png)
+![Feature Extraction and Validation Framework](./extraction and validation framework.png)
 
 ## feature_extract
 Data Alignment and Feature Extraction based on the original UNSW-NB15 dataset
-### File Function Description
+### File and Function Description
 List of Files and Their Functions:
 
-- Data Alignment: File 1.2.4.5 
-- Feature Extraction: File 3.7
+### **Data Alignment**:
+1. Data Alignment 
+- step1: Process CSV
+  - python file: main_format_NUSW-NB15_data.py
+  - description: Clean, Transform, and Handle Special Fields
+- step2: Insert Data into MangoDB
+  - python file: main_NUSW-NB15_2_mongoDB.py
+  - description: Store Data, aiming to improve processing performance
+- step3: Parse PCAP
+  - python file: main_parsing_PCAP_2_packet_data.py
+  - description: Extract basic features (statistical features) based on communication content, Feature fields are shown in col_name.py
+- step4: Data Alignment
+  - python file: main_matching_testing_training_set.py, main_merge_1c_feature_testing_training.py, main_give_the_optimal_class_1_feature_testing_training.py
+  - description: 
+    1. Match Testing/Training Data to NUSW-NB15 Dataset. The matching result includes one-to-many (indices). 
+    2. Reduce one-to-many features to one-to-one by randomly selecting and using minimum distance judgment.
+    3. Note: At this step, the indices of the testing and training datasets corresponding to the entire UNSW-NB15 dataset are obtained.  
 
-**1. main_format_NUSW-NB15_data.py**
-
-Correct and format the data of NB15.
-
-**2. main_NUSW-NB15_2_mongoDB.py**
-
-Insert NB15 data into mongoDB.  
-
-    Input: All data of UNSW-NB15.  
-    Output: mongoDB_client["paper2"]["data1008"]
-
-**3. main_parsing_PCAP_2_packet_data.py**
-
-Parse PCAP into packet communication packets and extract basic features as well as statistical features based on communication content.  
-
-    Input: PCAP  
-    Output: mongoDB_client["paper3"]["data1010"]
-
-**4. main_matching_testing_training_set.py**
-
-Match the testing and training datasets with the entire UNSW-NB15 dataset. The matching result includes one-to-many (indices).  
-Note: At this step, the indices of the testing and training datasets corresponding to the entire UNSW-NB15 dataset are obtained.  
-
-    Input: UNSW_NB15_testing-set.csv & UNSW_NB15_training-set.csv  
-            client["paper2"]["data1008"]  
-    Output: client["paper0"]["matching_UNSW_NB15_testing"]  
-            client["paper0"]["matching_UNSW_NB15_training"]
-
-**5. main_merge_1c_feature_testing_training.py**
-
-Expand the one-to-many indices from Step 4 into one-to-one data.  
-During data expansion, there is a timeout issue that needs to be bypassed using the no_cursor_timeout=True).batch_size(5000) method.  
-
-    Input: mongoDB_client["paper0"]["matching_UNSW_NB15_testing"]  
-            mongoDB_client["paper0"]["matching_UNSW_NB15_training"]  
-            mongoDB_client["paper2"]["data1008"]  
-    Output: mongoDB_client["paper5"]["merge_1_category_testing_features"]  
-        mongoDB_client["paper5"]["merge_1_category_training_features"]
-
-**6. main_give_the_optimal_class_1_feature_testing_training.py**
-
-Reduce one-to-many features to one-to-one by randomly selecting and using minimum distance judgment.  
-Minimum distance: Select the feature with the smallest distance between the testing and training datasets and the entire UNSW-NB15 dataset.  
-    
-    This is Type I Features.  
-    
-    Input: client["paper5"]["merge_1_category_testing_features"]  
-            client["paper5"]["merge_1_category_training_features"]  
-    Output: client["paper5"]["give_the_optimal_class_1_features_testing"]  
-            client["paper5"]["give_the_optimal_class_1_features_training"]
-
-
-**7. main_characteristics_1_category2.py**
-
-(1) **make_mediacy_group_5_tuples_time**  
-Statistical analysis of 5-tuples, start and end times for the entire UNSW-NB15 dataset, and record the correspondence between 5-tuples and raw data.  
-    
-    Input: mongoDB_client["paper2"]["data1008"]  
-    Output: mongoDB_client["paper2"]["mediacy_group_5_tuples_time"]  
-
-(2) **make_mediacy_pkt_info_set**  
-List all statistical information extracted from packet data within the time window based on 5-tuples and times of UNSW-NB15.  
-
-    Input: for -> mongoDB_client["paper2"]["mediacy_group_5_tuples_time"]  
-            mongoDB_client["paper3"]["data1010"]  
-    Output: mongoDB_client["paper3"]["mediacy_pkt_info_set2"]  
-
-(3) **calculate_aggregate_features**  
-Calculate statistical features within the time window of PCAP based on the results from (2).  
-
-    This is Type II Features.  
-
-    Input: mongoDB_client["paper3"]["mediacy_pkt_info_set2"]  
-    Output: mongoDB_client["paper4"]["raw_2_category_features"]  
-
-(4) **expand_1_category_features**  
-Combine Type I and Type II Features.  
-
-    ---Testing Set:  
-    Input: mongoDB_client["paper5"]["give_the_optimal_class_1_features_testing"]  
-            mongoDB_client["paper4"]["raw_2_category_features"]  
-    Output: mongoDB_client["paper5"]["output_2_category_features_testing"]  
-
-    ---Training Set:  
-    Input: mongoDB_client["paper5"]["give_the_optimal_class_1_features_training"]  
-            mongoDB_client["paper4"]["raw_2_category_features"]  
-    Output: mongoDB_client["paper5"]["output_2_category_features_training"]
+- step5:
+  - python file: main_characteristics_1_category2.py
+  - description:
+    1. **make_mediacy_group_5_tuples_time**: Statistical analysis of 5-tuples, start and end times for the entire UNSW-NB15 dataset, and record the correspondence between 5-tuples and raw data.
+    2. **make_mediacy_pkt_info_set**: List all statistical information extracted from packet data within the time window based on 5-tuples and times of UNSW-NB15.  
+    3. **calculate_aggregate_features**: Calculate statistical features within the time window of PCAP based on the results from 2.
+    4. **expand_1_category_features**: Combine Type I and Type II Features.  
 
 ## model_validation
 ### Feature Files

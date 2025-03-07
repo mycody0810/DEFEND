@@ -27,10 +27,10 @@ List of Files and Their Functions:
 ### **Data Alignment**:
 1. Data Alignment 
 - step1: Process CSV
-  - python file: main_format_NUSW-NB15_data.py
+  - python file: main_format_UNSW-NB15_data.py
   - description: Clean, Transform, and Handle Special Fields
 - step2: Insert Data into MangoDB
-  - python file: main_NUSW-NB15_2_mongoDB.py
+  - python file: main_UNSW-NB15_2_mongoDB.py
   - description: Store Data, aiming to improve processing performance
 - step3: Parse PCAP
   - python file: main_parsing_PCAP_2_packet_data.py
@@ -38,7 +38,7 @@ List of Files and Their Functions:
 - step4: Data Alignment
   - python file: main_matching_testing_training_set.py, main_merge_1c_feature_testing_training.py, main_give_the_optimal_class_1_feature_testing_training.py
   - description: 
-    1. Match Testing/Training Data to NUSW-NB15 Dataset. The matching result includes one-to-many (indices). 
+    1. Match Testing/Training Data to UNSW-NB15 Dataset. The matching result includes one-to-many (indices). 
     2. Reduce one-to-many features to one-to-one by randomly selecting and using minimum distance judgment.
     3. Note: At this step, the indices of the testing and training datasets corresponding to the entire UNSW-NB15 dataset are obtained.  
 

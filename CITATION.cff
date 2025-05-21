@@ -1,14 +1,5 @@
 cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
-authors:
-- family-names: "Han"
-  given-names: "Ying"
-- family-names: "Zhao"
-  given-names: "Runze"
-- family-names: "Jia"
-  given-names: "Jinkang"
-- family-names: "Kang"
-  given-names: "Lehan"
 
 title: "DEFEND: Deep Enhanced Feature Extraction for Network Defense"
 version: 1.0.0

@@ -1,7 +1,7 @@
 cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
 
-title: "DEFEND: Deep Enhanced Feature Extraction for Network Defense"
+title: "Feature-Centric Malicious Traffic Classification via Multi-Layer Operator Nesting Framework"
 version: 1.0.0
 date-released: 2025-03-06
 url: "https://github.com/mycody0810/DEFEND"
